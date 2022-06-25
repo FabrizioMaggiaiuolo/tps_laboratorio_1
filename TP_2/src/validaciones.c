@@ -19,7 +19,7 @@ int ValidarOpcionIngresada(int opcion,int* flagPrimeraOpcion)
 		printf("4. Informes\n");
 		printf("5. Carga Forzada\n");
 		printf("6. Salir\n");
-		scanf("%d",&opcion);
+		opcion = input_GetInt("");
 
 		if(*flagPrimeraOpcion == 0)
 		{

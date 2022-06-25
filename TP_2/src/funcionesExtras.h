@@ -32,7 +32,9 @@ int buscarLibre(sPassenger list[],int len);
 /// @brief pide los datos y modifica el pasajero
 /// @param list lista de pasajeros
 /// @param len largo de lista de pasajero
-void ModificarDatos(sPassenger list[],int len);
+/// @param listFlights lista de vuelos
+/// @param lenFlights largo de lista de vuelos
+void ModificarDatos(sPassenger list[],int len, sFlights listFlights[],int lenFlights);
 
 /// @brief pide el id e elimina el pasajero (isEmpy = 1)
 /// @param list lista de pasajeros

@@ -27,7 +27,7 @@ void EjecutarOpcion(int opcion,sPassenger list[],int len,int* pIdIncremental,sFl
 		PedidaDeDatos(list,len,pIdIncremental,listFlights,lenFlights);
 		break;
 	case 2:
-		ModificarDatos(list,len);
+		ModificarDatos(list,len,listFlights,lenFlights);
 		break;
 	case 3:
 		EliminarPasajero(list,len);
@@ -72,11 +72,14 @@ void PedidaDeDatos(sPassenger list[],int len,int* pIdIncremental,sFlights listFl
 	char codigoVuelo[10];
 	printf("Ingrese una de las siguientes opciones para el codigo de vuelo \n");
 	int i;
+
 	for(i = 0;i<lenFlights;i++)
 	{
 		printf("%d. %s \n",i,listFlights[i].flycode);
 	}
+
 	i = input_GetInt("Ingrese la opcion:");
+
 	while(i < 0 || i > lenFlights-1)
 	{
 		i = input_GetInt("\\ERROR\\Ingrese una de las opciones para el codigo de vuelo \n");
@@ -85,6 +88,7 @@ void PedidaDeDatos(sPassenger list[],int len,int* pIdIncremental,sFlights listFl
 
 	int tipoPasajero;
 	tipoPasajero = input_GetInt("Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
+
 	while(tipoPasajero < 1 || tipoPasajero > 3)
 	{
 		tipoPasajero = input_GetInt("\\ERROR\\Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
@@ -105,7 +109,7 @@ void PedidaDeDatos(sPassenger list[],int len,int* pIdIncremental,sFlights listFl
 }
 
 
-void ModificarDatos(sPassenger list[],int len)
+void ModificarDatos(sPassenger list[],int len, sFlights listFlights[],int lenFlights)
 {
 	int idIngresado;
 	idIngresado = input_GetInt("Porfavor ingrese el id del pasajero que quiere modificar");
@@ -115,6 +119,7 @@ void ModificarDatos(sPassenger list[],int len)
 
 	if(index != -1)
 	{
+		int i;
 		int opcion;
 		sPassenger auxiliar;
 		auxiliar = list[index];
@@ -142,12 +147,34 @@ void ModificarDatos(sPassenger list[],int len)
 			break;
 		case 4:
 			printf("El tipo de pasajero actual es: %d\n",list[index].typePassenger);
-			auxiliar.typePassenger = input_GetInt("Ingrese el nuevo tipo de pasajero");
+			auxiliar.typePassenger = input_GetInt("Ingrese el nuevo tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
+			auxiliar.typePassenger--;
+			while(auxiliar.typePassenger  < 0 || auxiliar.typePassenger  > 2)
+			{
+				auxiliar.typePassenger  = input_GetInt("\\ERROR\\Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
+				auxiliar.typePassenger--;
+			}
 			break;
+
 		case 5:
+
 			printf("El codigo de vuelo actual es: %s\n",list[index].flycode);
-			printf("Ingrese el nuevo codigo de vuelo \n");
-			scanf("%s",auxiliar.flycode);
+
+			printf("\nEstos son los vuelos disponibles: \n");
+
+			for(i = 0;i<lenFlights;i++)
+			{
+				printf("%d. %s \n",i,listFlights[i].flycode);
+			}
+
+			i = input_GetInt("Ingrese el nuevo codigo de vuelo:");
+
+			while(i < 0 || i > lenFlights-1)
+			{
+				i = input_GetInt("\\ERROR\\Ingrese una de las opciones para el codigo de vuelo \n");
+			}
+			strcpy(auxiliar.flycode,listFlights[i].flycode);
+
 			break;
 		}
 		list[index] = auxiliar;
@@ -173,7 +200,7 @@ void EliminarPasajero(sPassenger list[],int len)
 	}
 	else
 	{
-		printf("Hubo un error al eliminar al pasajer\n");
+		printf("Hubo un error al eliminar al pasajero \n");
 	}
 }
 
