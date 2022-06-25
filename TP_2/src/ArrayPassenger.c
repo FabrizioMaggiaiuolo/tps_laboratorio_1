@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "FuncionesBasicas.h"
+#include "inputs.h"
 #include "ArrayPassenger.h"
 #include "validaciones.h"
 #include "funcionesExtras.h"
@@ -85,39 +85,39 @@ int removePassenger(sPassenger list[],int len,int id)
 void printPassengers(sPassenger list[],int len,sFlights listFlights[],int lenFlights)
 {
 	printf("\n");
-	printf("Nombre    Apellido      Precio       Numero de Vuelo      Estado de Vuelo     Tipo de pasajero \n");
+	printf("ID   Nombre    Apellido      Precio       Numero de Vuelo      Estado de Vuelo     Tipo de pasajero \n");
 	for(int i = 0;i<len;i++)
 	{
 		if(list[i].isEmpty == 0)
 		{
-			printf("%s  %10s 	%6.2f 	%8s",list[i].name,list[i].lastName,list[i].price,list[i].flycode);
+			printf("%d %10s  %10s %13.2f	%9s",list[i].id ,list[i].name,list[i].lastName,list[i].price,list[i].flycode);
 			for(int j = 0; j<lenFlights;j++)
 			{
 				if(strcmp(list[i].flycode,listFlights[j].flycode ) == 0)
 				{
 					if(listFlights[j].statusFlight == 1)
 					{
-						printf("		ACTIVO");
+						printf("%28s","ACTIVO");
 					}
 					else
 					{
-						printf("		INACTIVO");
+						printf("%28s","INACTIVO");
 					}
 				}
 			}
 			if(list[i].typePassenger == 0)
 			{
-				printf("		Turista \n");
+				printf("%24s","Turista \n");
 			}
 			else
 			{
 				if(list[i].typePassenger == 1)
 				{
-					printf("		Ejecutivo \n");
+					printf("%24s","Ejecutivo \n");
 				}
 				else
 				{
-					printf("		First class \n");
+					printf("%24s","First class \n");
 				}
 			}
 		}

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "FuncionesBasicas.h"
+#include "inputs.h"
 #include "ArrayPassenger.h"
 #include "validaciones.h"
 #include "funcionesExtras.h"

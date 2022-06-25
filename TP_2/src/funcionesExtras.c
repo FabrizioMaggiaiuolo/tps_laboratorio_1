@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "FuncionesBasicas.h"
+#include "inputs.h"
 #include "ArrayPassenger.h"
 #include "validaciones.h"
 #include "funcionesExtras.h"
@@ -61,28 +61,34 @@ void PedidaDeDatos(sPassenger list[],int len,int* pIdIncremental,sFlights listFl
 {
 	int r;
 	char nombre[51];
-	printf("Ingrese su nombre \n");
-	scanf("%s",nombre);
+	input_GetString("Ingrese su nombre \n", nombre);
 
 	char apellido[51];
-	printf("Ingrese su apellido \n");
-	scanf("%s",apellido);
+	input_GetString("Ingrese su apellido \n", apellido);
 
 	float precio;
-	precio = GetFloat("Ingrese el precio del vuelo");
+	precio = input_GetFloat("Ingrese el precio del vuelo");
 
 	char codigoVuelo[10];
 	printf("Ingrese una de las siguientes opciones para el codigo de vuelo \n");
 	int i;
-	for(i = 1;i<lenFlights+1;i++)
+	for(i = 0;i<lenFlights;i++)
 	{
-		printf("%d. %s",i,listFlights[i].flycode);
+		printf("%d. %s \n",i,listFlights[i].flycode);
 	}
-	scanf("%d",&i);
-	strcpy(codigoVuelo,listFlights[i-1].flycode);
+	i = input_GetInt("Ingrese la opcion:");
+	while(i < 0 || i > lenFlights-1)
+	{
+		i = input_GetInt("\\ERROR\\Ingrese una de las opciones para el codigo de vuelo \n");
+	}
+	strcpy(codigoVuelo,listFlights[i].flycode);
 
 	int tipoPasajero;
-	tipoPasajero = GetInt("Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
+	tipoPasajero = input_GetInt("Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
+	while(tipoPasajero < 1 || tipoPasajero > 3)
+	{
+		tipoPasajero = input_GetInt("\\ERROR\\Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
+	}
 
 
 	r = addPassengers(list,len,*pIdIncremental,nombre,apellido, precio, tipoPasajero,codigoVuelo);
@@ -102,7 +108,7 @@ void PedidaDeDatos(sPassenger list[],int len,int* pIdIncremental,sFlights listFl
 void ModificarDatos(sPassenger list[],int len)
 {
 	int idIngresado;
-	idIngresado = GetInt("Porfavor ingrese el id del pasajero que quiere modificar");
+	idIngresado = input_GetInt("Porfavor ingrese el id del pasajero que quiere modificar");
 
 	int index;
 	index = findPassengerById(list,len,idIngresado);
@@ -118,27 +124,25 @@ void ModificarDatos(sPassenger list[],int len)
 		printf("3. Precio\n");
 		printf("4. Tipo de pasajero\n");
 		printf("5. Codigo de vuelo\n");
-		scanf("%d",&opcion);
+		opcion =  input_GetInt("");
 
 		switch(opcion)
 		{
 		case 1:
 			printf("El nombre actual es: %s\n",list[index].name);
-			printf("Ingrese el nuevo nombre \n");
-			scanf("%s",auxiliar.name);
+			input_GetString("Ingrese el nuevo nombre \n", auxiliar.name);
 			break;
 		case 2:
 			printf("El apellido actual es: %s\n",list[index].lastName);
-			printf("Ingrese el nuevo apellido \n");
-			scanf("%s",auxiliar.lastName);
+			input_GetString("Ingrese el nuevo apellido \n", auxiliar.lastName);
 			break;
 		case 3:
 			printf("El precio actual es: %f\n",list[index].price);
-			auxiliar.price = GetFloat("Ingrese el nuevo precio");
+			auxiliar.price = input_GetFloat("Ingrese el nuevo precio");
 			break;
 		case 4:
 			printf("El tipo de pasajero actual es: %d\n",list[index].typePassenger);
-			auxiliar.typePassenger = GetInt("Ingrese el nuevo tipo de pasajero");
+			auxiliar.typePassenger = input_GetInt("Ingrese el nuevo tipo de pasajero");
 			break;
 		case 5:
 			printf("El codigo de vuelo actual es: %s\n",list[index].flycode);
@@ -159,17 +163,17 @@ void ModificarDatos(sPassenger list[],int len)
 void EliminarPasajero(sPassenger list[],int len)
 {
 	int idIngresado;
-	idIngresado = GetInt("Porfavor ingrese el id del pasajero que quiere eliminar");
+	idIngresado = input_GetInt("Ingrese el id del pasajero que quiere eliminar");
 
 	int index;
 	index = removePassenger(list,len,idIngresado);
 	if(index != -1)
 	{
-		printf("Se elmino correctamente");
+		printf("Se elmino correctamente\n");
 	}
 	else
 	{
-		printf("Hubo un error al eliminar al pasajer");
+		printf("Hubo un error al eliminar al pasajer\n");
 	}
 }
 
@@ -180,7 +184,7 @@ void Listados(sPassenger list[],int len,sFlights listFlights[],int lenFlights)
 	printf("1. Listado de los pasajeros ordenados alfabéticamente por Apellido y Tipo de pasajero\n");
 	printf("2. Total y promedio de los precios de los pasajes, y cuántos pasajeros superan el precio promedio\n");
 	printf("3. Listado de los pasajeros por Código de vuelo y estados de vuelos ‘ACTIVO’\n");
-	scanf("%d",&opcion);
+	opcion = input_GetInt("");
 
 	switch(opcion)
 	{
@@ -235,7 +239,7 @@ void TotalPromedioPrecios(sPassenger list[],int len)
 		}
 	}
 
-	printf("El total de los precios es: %.4f \nEl promedio de los precios es: %.4f \nLa cantidad de pasajeros que superan este promedio es: %d \n",acumuladorPrecios,promedio,contadorPasajerosSuperanPromedio);
+	printf("El total de los precios es: %.4f \nEl promedio de los precios es: %.4f \nLa cantidad de pasajeros que superan este promedio es: %d \n\n",acumuladorPrecios,promedio,contadorPasajerosSuperanPromedio);
 
 }
 
