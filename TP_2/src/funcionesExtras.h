@@ -70,3 +70,4 @@ void ListadoCodigoVueloActivo(sPassenger list[],int len,sFlights listFlights[],i
 
 void cargaForzada(sPassenger list[],int len,int* pIdIncremental);
 #endif /* FUNCIONESEXTRAS_H_ */
+

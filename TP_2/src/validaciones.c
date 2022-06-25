@@ -31,3 +31,4 @@ int ValidarOpcionIngresada(int opcion,int* flagPrimeraOpcion)
 	}
 	return opcion;
 }
+

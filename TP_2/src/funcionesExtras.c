@@ -375,4 +375,3 @@ void cargaForzada(sPassenger list[],int len,int* pIdIncremental)
 	*pIdIncremental = *pIdIncremental +1;
 }
 
-
