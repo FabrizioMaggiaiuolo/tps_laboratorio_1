@@ -1,27 +1,6 @@
 #include "validaciones.h"
 #include <string.h>
 
-int esNumerica(char* cadena)
-{
-	int i;
-	i = 0;
-	int retorno = 0;
-	if(cadena && strlen(cadena) > 0)
-	{
-		while(cadena[i] != '\0')
-		{
-			if(cadena[i] < '0' || cadena[i] > '9' )
-			{
-				retorno = 1;
-				break;
-			}
-			i++;
-		}
-	}
-	return retorno;
-}
-
-
 // CALCULAR RANGOS
 
 int validaciones_NumeroDistinto0(float numeroIngresado)

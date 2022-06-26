@@ -49,16 +49,16 @@ int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 	if(pFile != NULL && pArrayListPassenger != NULL)
 	{
 		int leyo;
-		Passenger pasajero;
-		Passenger* unPasajero;
 		do
 		{
-			leyo = fread(&pasajero,sizeof(Passenger),1,pFile);
+			Passenger* pPasajero;
+			pPasajero = Passenger_new();
+
+			leyo = fread(pPasajero,sizeof(Passenger),1,pFile);
 
 			if(leyo == 1)
 			{
-				unPasajero = &pasajero;
-				ll_add(pArrayListPassenger,unPasajero);
+				ll_add(pArrayListPassenger,pPasajero);
 			}
 		}
 		while(!feof(pFile));

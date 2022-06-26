@@ -2,27 +2,98 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <ctype.h>
 
 #include "inputs.h"
 
 // INGRESAR DATOS
 
+int esNumerica(char numero[])
+{
+
+	int i;
+	i = 0;
+	int retorno;
+	retorno = 1;
+
+	if(numero != NULL && strlen(numero) > 0)
+	{
+		while(numero[i] != '\0')
+		{
+			if(numero[i] < '0' || numero[i] > '9')
+			{
+				retorno = 0;
+				break;
+			}
+
+			i++;
+		}
+	}
+
+	return retorno;
+}
+
+int esFlotante(char numero[])
+{
+
+	int i;
+	i = 0;
+	int retorno;
+	retorno = 1;
+
+	int coma;
+	coma = 0;
+
+	if(numero != NULL && strlen(numero) > 0)
+	{
+		while(numero[i] != '\0')
+		{
+			if((numero[i] < '0' || numero[i] > '9') && (numero[i] != '.' || coma == 1) )
+			{
+				retorno = 0;
+				break;
+			}
+
+			if(numero[i] == '.')
+			{
+				coma = 1;
+			}
+
+			i++;
+		}
+	}
+
+	return retorno;
+}
+
 int input_GetInt(char mensaje[])
 {
-	int numeroIngresado;
-	printf("%s \n",mensaje);
-	scanf("%d",&numeroIngresado);
+	char cadenaIngresada[22];
 
-	return numeroIngresado;
+	printf("%s \n",mensaje);
+	scanf("%s",cadenaIngresada);
+	while (esNumerica(cadenaIngresada) == 0)
+	{
+		printf("\\ERROR\\ %s \n",mensaje);
+		scanf("%s",cadenaIngresada);
+	}
+
+	return atoi(cadenaIngresada);
 }
 
 float input_GetFloat(char mensaje[])
 {
-	float numeroIngresado;
-	printf("%s \n",mensaje);
-	scanf("%f",&numeroIngresado);
+	char cadenaIngresada[22];
 
-	return numeroIngresado;
+		printf("%s \n",mensaje);
+		scanf("%s",cadenaIngresada);
+		while (esFlotante(cadenaIngresada) == 0)
+		{
+			printf("\\ERROR\\ %s \n",mensaje);
+			scanf("%s",cadenaIngresada);
+		}
+
+		return atof(cadenaIngresada);
 }
 
 char input_GetChar(char mensaje[])
@@ -35,47 +106,60 @@ char input_GetChar(char mensaje[])
 	return charIngresado;
 }
 
-void input_GetString(char mensaje[],char* copiar)
-{
-	if(copiar != NULL)
-	{
-		char stringIngresado[100];
-		printf("%s \n",mensaje);
-		scanf("%s",stringIngresado);
 
-		strcpy(copiar,stringIngresado);
-	}
+void input_GetString(char mensaje[],char string[])
+{
+	char stringIngresado[102];
+
+	printf("%s \n",mensaje);
+	fflush(stdin);
+	scanf("%[^\n]",stringIngresado);
+
+	strcpy(string,stringIngresado);
 }
 
-// VECTORES
-
-/*
-void ImprimirVectorInt(int numeros[],int tamano)
+void input_GetNombre(char string[])
 {
+	char stringIngresado[102];
 	int i;
-	for(i= 0;i<tamano;i++)
-	{
-		printf("%d",numeros[i]);
-	}
-}
+	i = 0;
 
-void OrdenarVectorMenorAMayor(int numeros[],int tamano)
-{
-	int i;
-	int j;
-	int aux;
+	printf("%s \n","Ingrese su nombre completo (\"Apellidos, nombres\")");
+	fflush(stdin);
+	scanf("%[^\n]",stringIngresado);
 
-	for(i = 0;i<tamano-1;i++)
+	stringtolower(stringIngresado);
+
+	stringIngresado[i] = toupper(stringIngresado[i]);
+	while(stringIngresado[i] != '\0')
 	{
-		for(j = i+1;j<tamano;j++)
+		if(stringIngresado[i-1] == ' ' || stringIngresado[i-1] == ',')
 		{
-			if(numeros[i]>numeros[j])
-			{
-				aux = numeros[i];
-				numeros[i] = numeros[j];
-				numeros[j] = aux;
-			}
+			stringIngresado[i] = toupper(stringIngresado[i]);
 		}
+		i++;
+	}
+
+	strcpy(string,stringIngresado);
+}
+
+void stringtoupper(char string[])
+{
+	int i;
+	i = 0;
+	while(string[i] != '\0')
+	{
+		string[i] = toupper(string[i]);
+		i++;
 	}
 }
-*/
+void stringtolower(char string[])
+{
+	int i;
+	i = 0;
+	while(string[i] != '\0')
+	{
+		string[i] = tolower(string[i]);
+		i++;
+	}
+}
