@@ -12,11 +12,15 @@ typedef struct
 
 int esNumerica(char numero[]);
 int esFlotante(char numero[]);
+int soloLetras(char string[]);
+int noContieneNumeros(char string[]);
 
 int input_GetInt(char mensaje[]);
 float input_GetFloat(char mensaje[]);
 char input_GetChar(char mensaje[]);
 void input_GetString(char mensaje[],char string[]);
+void input_GetSinNumeros(char mensaje[],char string[]);
+void input_GetSoloLetras(char mensaje[],char string[]);
 void input_GetNombre(char string[]);
 
 void stringtoupper(char string[]);

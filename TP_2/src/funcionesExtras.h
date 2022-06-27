@@ -68,6 +68,15 @@ void TotalPromedioPrecios(sPassenger list[],int len);
 /// @param lenFlights largo de lista de vuelos
 void ListadoCodigoVueloActivo(sPassenger list[],int len,sFlights listFlights[],int lenFlights);
 
+/// @brief Fuerza la carga de pasajeros
+/// @param list lista de pasajeros
+/// @param len largo de lista de pasajero
+/// @param pIdIncremental puntero de id incremental
 void cargaForzada(sPassenger list[],int len,int* pIdIncremental);
+
+/// @brief Lista los vuelos como un submenu
+/// @param listFlights lista de vuelos
+/// @param lenFlights largo de lista de vuelos
+void ListarVuelos(sFlights listFlights[],int lenFlights);
 #endif /* FUNCIONESEXTRAS_H_ */
 

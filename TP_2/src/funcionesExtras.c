@@ -60,23 +60,29 @@ int buscarLibre(sPassenger list[],int len)
 void PedidaDeDatos(sPassenger list[],int len,int* pIdIncremental,sFlights listFlights[],int lenFlights)
 {
 	int r;
+
+	//Nombre
+
 	char nombre[51];
-	input_GetString("Ingrese su nombre \n", nombre);
+	input_GetSinNumeros("Ingrese su nombre \n", nombre);
+
+	//Apellido
 
 	char apellido[51];
-	input_GetString("Ingrese su apellido \n", apellido);
+	input_GetSinNumeros("Ingrese su apellido \n", apellido);
+
+	//Precio
 
 	float precio;
 	precio = input_GetFloat("Ingrese el precio del vuelo");
+
+	//Codigo de vuelo
 
 	char codigoVuelo[10];
 	printf("Ingrese una de las siguientes opciones para el codigo de vuelo \n");
 	int i;
 
-	for(i = 0;i<lenFlights;i++)
-	{
-		printf("%d. %s \n",i,listFlights[i].flycode);
-	}
+	ListarVuelos(listFlights, lenFlights);
 
 	i = input_GetInt("Ingrese la opcion:");
 
@@ -86,6 +92,8 @@ void PedidaDeDatos(sPassenger list[],int len,int* pIdIncremental,sFlights listFl
 	}
 	strcpy(codigoVuelo,listFlights[i].flycode);
 
+	//Tipo pasajero
+
 	int tipoPasajero;
 	tipoPasajero = input_GetInt("Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
 
@@ -94,6 +102,7 @@ void PedidaDeDatos(sPassenger list[],int len,int* pIdIncremental,sFlights listFl
 		tipoPasajero = input_GetInt("\\ERROR\\Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
 	}
 
+	//Añadir
 
 	r = addPassengers(list,len,*pIdIncremental,nombre,apellido, precio, tipoPasajero,codigoVuelo);
 	if(r == 0)
@@ -147,8 +156,10 @@ void ModificarDatos(sPassenger list[],int len, sFlights listFlights[],int lenFli
 			break;
 		case 4:
 			printf("El tipo de pasajero actual es: %d\n",list[index].typePassenger);
+
 			auxiliar.typePassenger = input_GetInt("Ingrese el nuevo tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
 			auxiliar.typePassenger--;
+
 			while(auxiliar.typePassenger  < 0 || auxiliar.typePassenger  > 2)
 			{
 				auxiliar.typePassenger  = input_GetInt("\\ERROR\\Ingrese el tipo de pasajero (1.Turista 2.Ejecutivo 3.First class)");
@@ -162,10 +173,7 @@ void ModificarDatos(sPassenger list[],int len, sFlights listFlights[],int lenFli
 
 			printf("\nEstos son los vuelos disponibles: \n");
 
-			for(i = 0;i<lenFlights;i++)
-			{
-				printf("%d. %s \n",i,listFlights[i].flycode);
-			}
+			ListarVuelos(listFlights, lenFlights);
 
 			i = input_GetInt("Ingrese el nuevo codigo de vuelo:");
 
@@ -373,5 +381,13 @@ void cargaForzada(sPassenger list[],int len,int* pIdIncremental)
 	list[index+6].isEmpty = 0;
 
 	*pIdIncremental = *pIdIncremental +1;
+}
+
+void ListarVuelos(sFlights listFlights[],int lenFlights)
+{
+	for(int i = 0;i<lenFlights;i++)
+	{
+		printf("%d. %s \n",i,listFlights[i].flycode);
+	}
 }
 
