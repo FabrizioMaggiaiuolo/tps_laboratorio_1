@@ -3,6 +3,7 @@
 #include "LinkedList.h"
 #include "Passenger.h"
 #include "parser.h"
+#include "controlId.h"
 
 /** \brief Parsea los datos los datos de los pasajeros desde el archivo data.csv (modo texto).
  *
@@ -30,10 +31,21 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 		while(!feof(pFile))
 		{
 			fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,apellido,precio,codigo,tipoPasajero,estado);
+			if(atoi(id) > 1000)
+			{
+				ArchivoIds(atoi(id));
+			}
+			else
+			{
+				LeerIdStr(id);
+			}
+			SumarId();
 			unPasajero = Passenger_newParametros(id, nombre, tipoPasajero, apellido, codigo, precio, estado);
 			ll_add(pArrayListPassenger,unPasajero);
 		}
+		LeerIdStr(id);
 	}
+
     return 1;
 }
 
@@ -58,6 +70,15 @@ int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 
 			if(leyo == 1)
 			{
+				if(pPasajero->id > 1000)
+				{
+					ArchivoIds(pPasajero->id);
+				}
+				else
+				{
+					pPasajero->id = LeerIdInt();
+				}
+				SumarId();
 				ll_add(pArrayListPassenger,pPasajero);
 			}
 		}

@@ -89,6 +89,8 @@ void Passenger_delete(Passenger* this)
 	free(this);
 }
 
+// Comparaciones
+
 int Passenger_compareByName(void* p1,void *p2)
 {
 	Passenger* pasajero1;
@@ -97,6 +99,30 @@ int Passenger_compareByName(void* p1,void *p2)
 	pasajero2 = (Passenger*) p2;
 
 	return strcmp(pasajero1->nombre,pasajero2->nombre);
+}
+
+int Passenger_compareById(void* p1,void *p2)
+{
+	int retorno;
+	retorno = 0;
+	Passenger* pasajero1;
+	Passenger* pasajero2;
+	pasajero1 = (Passenger*) p1;
+	pasajero2 = (Passenger*) p2;
+
+	if(pasajero1->id > pasajero2->id)
+	{
+		retorno = 1;
+	}
+	else
+	{
+		if(pasajero1->id < pasajero2->id)
+		{
+			retorno = -1;
+		}
+	}
+
+	return retorno;
 }
 
 //ID

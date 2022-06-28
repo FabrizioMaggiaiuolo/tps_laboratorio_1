@@ -2,26 +2,22 @@
 #include <stdlib.h>
 
 
-void CrearArchivoIds(void)
+void ArchivoIds(int id)
 {
-
-	int idInicial;
-	idInicial = 1001;
-
 	FILE* fileIds;
 	fileIds = fopen("id.bin","wb");
-	fwrite(&idInicial,sizeof(int),1,fileIds);
+	fwrite(&id,sizeof(int),1,fileIds);
 
 	fclose(fileIds);
 
 }
 
-int LeerIdInt(void)
+int LeerIdInt()
 {
 	int id;
 
 	FILE* fileIds;
-	fileIds = fopen("id.bin","r");
+	fileIds = fopen("id.bin","rb");
 	fread(&id,sizeof(int),1,fileIds);
 
 	fclose(fileIds);
@@ -34,7 +30,7 @@ void LeerIdStr(char* strId)
 	int id;
 
 	FILE* fileIds;
-	fileIds = fopen("id.bin","r");
+	fileIds = fopen("id.bin","rb");
 	fread(&id,sizeof(int),1,fileIds);
 
 	fclose(fileIds);
@@ -42,17 +38,14 @@ void LeerIdStr(char* strId)
 	itoa(id,strId,10);
 }
 
-void SumarId(void)
+void SumarId()
 {
-
 	int id;
+
 	id = LeerIdInt();
 
 	id++;
 
-	FILE* fileIds;
-	fileIds = fopen("id.bin","wb");
-	fwrite(&id,sizeof(int),1,fileIds);
+	ArchivoIds(id);
 
-	fclose(fileIds);
 }

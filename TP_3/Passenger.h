@@ -19,6 +19,7 @@ void Passenger_delete(Passenger* this);
 
 void Passenger_printUno(Passenger* this);
 int Passenger_compareByName(void* p1,void *p2);
+int Passenger_compareById(void* p1,void *p2);
 
 int Passenger_setId(Passenger* this,int id);
 int Passenger_getId(Passenger* this,int* id);

@@ -6,8 +6,10 @@
 float IngresoFloat(char mensaje[])
 {
 	float numeroIngresado;
-	printf("%s \n",mensaje);
-	scanf("%f",&numeroIngresado);
+	do{
+		printf("%s \n",mensaje);
+		scanf("%f",&numeroIngresado);
+	} while (numeroIngresado < 1);
 
 	return numeroIngresado;
 }
