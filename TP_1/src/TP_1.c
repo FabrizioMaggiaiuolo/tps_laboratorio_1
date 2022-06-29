@@ -8,6 +8,7 @@ TP_1
 #include <stdlib.h>
 
 #include "funciones.h"
+#include "inputs.h"
 
 int main(void)
 {
@@ -29,7 +30,7 @@ int main(void)
 
 	while(respuesta != 6)
 	{
-		respuesta = ImprimirMenu(respuesta,x,z,y);
+		respuesta = ImprimirMenu(x,z,y);
 
 
 		switch(respuesta)
@@ -37,14 +38,14 @@ int main(void)
 
 		case 1:
 			system("cls");
-			x = IngresoFloat("Ingrese la cantidad de kilometros del viaje");
+			x = input_GetFloat("Ingrese la cantidad de kilometros del viaje");
 			system("cls");
 			break;
 
 		case 2:
 			system("cls");
-			y = IngresoFloat("Ingrese el precio de Aerolineas: ");
-			z = IngresoFloat("Ingrese el precio de Latam: ");
+			y = input_GetFloat("Ingrese el precio de Aerolineas: ");
+			z = input_GetFloat("Ingrese el precio de Latam: ");
 			system("cls");
 			break;
 
@@ -53,7 +54,14 @@ int main(void)
 			break;
 
 		case 4:
-			InfomarResultados(precios,calculado,x,z,y);
+			if(calculado != 0)
+			{
+				InfomarResultados(precios,calculado,x,z,y);
+			}
+			else
+			{
+				printf("Calcule los costos antes de ingresar esta opcion\n\n");
+			}
 			break;
 
 		case 5:

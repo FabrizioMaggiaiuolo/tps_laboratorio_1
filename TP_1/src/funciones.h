@@ -3,8 +3,8 @@
 
 float IngresoFloat(char[]);
 
-int ImprimirMenu(int,float,float,float);
-int CalcularCostos(float,float,float,float[],int);
+int ImprimirMenu(float,float,float);
+int CalcularCostos(float,float,float,float[]);
 void InfomarResultados(float[],int,float,float,float);
 
 float PrecioTarjetaDebito(float,float);
