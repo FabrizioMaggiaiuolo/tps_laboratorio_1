@@ -20,6 +20,7 @@ float input_GetFloat(char mensaje[]);
 char input_GetChar(char mensaje[]);
 void input_GetString(char mensaje[],char string[]);
 void input_GetSinNumeros(char mensaje[],char string[]);
+void input_GetAlphaNumerico(char mensaje[],char string[]);
 void input_GetSoloLetras(char mensaje[],char string[]);
 void input_GetNombre(char string[]);
 

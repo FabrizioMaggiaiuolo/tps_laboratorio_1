@@ -54,7 +54,7 @@ void IngresoCodigoVuelo(char codigoVuelo[])
 {
 	do
 	{
-		input_GetString("Ingrese el codigo de vuelo", codigoVuelo);
+		input_GetAlphaNumerico("Ingrese el codigo de vuelo (7 caracteres alfanumericos)", codigoVuelo);
 	} while (strlen(codigoVuelo) != 7);
 	stringtoupper(codigoVuelo);
 }

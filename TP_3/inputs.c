@@ -44,7 +44,7 @@ int esFlotante(char numero[])
 	int coma;
 	coma = 0;
 
-	if(numero != NULL && strlen(numero) > 0)
+	if(numero != NULL && strlen(numero) != 0)
 	{
 		while(numero[i] != '\0')
 		{
@@ -116,6 +116,31 @@ int soloLetras(char string[])
 	return retorno;
 }
 
+int esAlphaNumerico(char string[])
+{
+
+	int i;
+	i = 0;
+	int retorno;
+	retorno = 1;
+
+	if(string != NULL && strlen(string) > 0)
+	{
+		while(string[i] != '\0')
+		{
+			if((string[i] < '0' || string[i] > '9') && (string[i] < 'A' || string[i] > 'Z') && (string[i] < 'a' || string[i] > 'z'))
+			{
+				retorno = 0;
+				break;
+			}
+
+			i++;
+		}
+	}
+
+	return retorno;
+}
+
 int input_GetInt(char mensaje[])
 {
 	char cadenaIngresada[22];
@@ -165,7 +190,7 @@ void input_GetString(char mensaje[],char string[])
 	fflush(stdin);
 	scanf("%[^\n]",stringIngresado);
 
-	while (stringIngresado == NULL || stringIngresado[1] == '\0')
+	while (stringIngresado == NULL || strlen(stringIngresado) == 0)
 	{
 		printf("\\ERROR\\ %s \n",mensaje);
 		fflush(stdin);
@@ -182,13 +207,31 @@ void input_GetSinNumeros(char mensaje[],char string[])
 	printf("%s \n",mensaje);
 	fflush(stdin);
 	scanf("%[^\n]",stringIngresado);
-	while (noContieneNumeros(stringIngresado) != 1 || stringIngresado == NULL || stringIngresado[1] == '\0')
+	while (noContieneNumeros(stringIngresado) != 1 || stringIngresado == NULL || strlen(stringIngresado) == 0)
 	{
 		printf("\\ERROR\\ %s \n",mensaje);
 		fflush(stdin);
 		scanf("%[^\n]",stringIngresado);
 	}
 
+	strcpy(string,stringIngresado);
+}
+
+
+void input_GetAlphaNumerico(char mensaje[],char string[])
+{
+	char stringIngresado[102];
+
+	printf("%s \n",mensaje);
+	fflush(stdin);
+	scanf("%[^\n]",stringIngresado);
+
+	while (esAlphaNumerico(stringIngresado) != 1 || stringIngresado == NULL || strlen(stringIngresado) == 0)
+	{
+		printf("\\ERROR\\ %s \n",mensaje);
+		fflush(stdin);
+		scanf("%[^\n]",stringIngresado);
+	}
 	strcpy(string,stringIngresado);
 }
 
@@ -200,7 +243,7 @@ void input_GetSoloLetras(char mensaje[],char string[])
 	fflush(stdin);
 	scanf("%[^\n]",stringIngresado);
 
-	while (noContieneNumeros(stringIngresado) != 1 || stringIngresado == NULL || stringIngresado[1] == '\0')
+	while (noContieneNumeros(stringIngresado) != 1 || stringIngresado == NULL || strlen(stringIngresado) == 0)
 	{
 		printf("\\ERROR\\ %s \n",mensaje);
 		fflush(stdin);
