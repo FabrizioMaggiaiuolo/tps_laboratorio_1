@@ -141,7 +141,7 @@ id,name,lastname,price,flycode,typePassenger,statusFlight
 140,Corbin,Torres,42000.000000,BA2491A,ExecutiveClass,Aterrizado
 141,Coreen,Araya,18000.000000,IB0800A,EconomyClass,Aterrizado
 142,Tanya,Flores,30000.000000,IB0800A,EconomyClass,Aterrizado
-143,Jenna,Espinoza,25000.000000,IB0800A,FirstClass,Aterrizado
+143,Jenna,Espinoza,25000.000000,IB0800A,EconomyClass,Aterrizado
 144,Flora,Valenzuela,33000.000000,IB0800A,EconomyClass,Aterrizado
 145,Dianna,Castillo,20000.000000,IB0800A,EconomyClass,Aterrizado
 146,Armand,Tapia,15000.000000,IB0800A,EconomyClass,Aterrizado
@@ -542,7 +542,7 @@ id,name,lastname,price,flycode,typePassenger,statusFlight
 541,Deny,Vera,18000.000000,GU2345F,EconomyClass,En Vuelo
 542,Gene,Molina,15000.000000,GU2345F,EconomyClass,En Vuelo
 543,Margeaux,Vega,18000.000000,GU2345F,EconomyClass,En Vuelo
-544,Prisca,Campos,18000.000000,GU2345F,FirstClass,En Vuelo
+544,Prisca,Campos,18000.000000,GU2345F,EconomyClass,En Vuelo
 545,Domini,Sandoval,18000.000000,GU2345F,EconomyClass,En Vuelo
 546,Henrie,Orellana,50000.000000,GU2345F,EconomyClass,En Vuelo
 547,Marj,Cárdenas,18000.000000,GU2345F,EconomyClass,En Vuelo
@@ -998,4 +998,4 @@ id,name,lastname,price,flycode,typePassenger,statusFlight
 997,De witt,Alonso,12000.000000,MM0987B,EconomyClass,En Horario
 998,Jaye,Gutiérrez,25000.000000,MM0987B,EconomyClass,En Horario
 999,Tamarra,Navarro,15000.000000,MM0987B,EconomyClass,En Horario
-1001,fa,fa,4343.000000,LLADKFD,EconomyClass,FirstClass
+1000,Saleem,Torres,20000.000000,MM0987B,EconomyClass,En Horario
