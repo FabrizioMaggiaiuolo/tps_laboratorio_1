@@ -13,12 +13,50 @@ typedef struct
 
 }Passenger;
 
+/// @brief Crea un nuevo pasajero en memoria dinamica
+///
+/// @return retorna el pasajero
 Passenger* Passenger_new();
+
+/// @brief Crea un nuevo pasajero en memoria dinamica y le asigna todos los datos
+///
+/// TODOS LOS PARAMETROS SE RECIBEN COMO CADENA DE CARACTERES
+/// @param idStr el id que se le asigna
+/// @param nombreStr el nombre que se le asigna
+/// @param tipoPasajeroStr el tipo de pasajero que se le asigna
+/// @param apellido el apallido que se le asigna
+/// @param codigo el codigo de vuelo que se le asigna
+/// @param precio el precio del vuelo que se le asiga
+/// @param estado el estado del vuelo que se le asigno
+/// @return retorna el pasajero
 Passenger* Passenger_newParametros(char* idStr,char* nombreStr,char* tipoPasajeroStr,char* apellido, char* codigo,char* precio,char* estado);
+
+/// @brief libera el espacio en memoria dinamica utilizado por el pasajero
+///
+/// @param this el pasajero a eliminar
 void Passenger_delete(Passenger* this);
 
+/// @brief imprime por cosola todos los datos de un pasajero
+///
+/// @param this puntero al pasajero
 void Passenger_printUno(Passenger* this);
+
+/// @brief comparacion de nombre entre 2 pasajeros
+///
+/// @param p1
+/// @param p2
+/// @return 1 si el nombre del pasajero 1 > nombre del pasajero 2
+/// -1 si el nombre del pasajero 1 < nombre del pasajero 2
+/// 0 si el nombre del pasajero 1 = nombre del pasajero 2
 int Passenger_compareByName(void* p1,void *p2);
+
+/// @brief comparacion de id entre 2 pasajeros
+///
+/// @param p1
+/// @param p2
+/// @return 1 si el id del pasajero 1 > id del pasajero 2
+/// -1 si el id del pasajero 1 < id del pasajero 2
+/// 0 si el id del pasajero 1 = id del pasajero 2
 int Passenger_compareById(void* p1,void *p2);
 
 int Passenger_setId(Passenger* this,int id);

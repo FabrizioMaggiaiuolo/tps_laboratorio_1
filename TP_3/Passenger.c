@@ -3,6 +3,7 @@
 #include <string.h>
 #include "Passenger.h"
 
+
 Passenger* Passenger_new()
 {
 	return (Passenger*) malloc(sizeof(Passenger));
@@ -83,6 +84,7 @@ void Passenger_printUno(Passenger* this)
 	}
 	printf("%15s %15s\n",codigoVuelo,estadoVuelo);
 }
+
 
 void Passenger_delete(Passenger* this)
 {
@@ -262,6 +264,8 @@ int Passenger_setTipoPasajero(Passenger* this,int tipoPasajero)
 
 	return respuesta;
 }
+
+
 int Passenger_getTipoPasajero(Passenger* this,int* tipoPasajero)
 {
 	int respuesta;

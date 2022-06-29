@@ -6,7 +6,6 @@
 #include "Controller.h"
 #include "Passenger.h"
 #include "inputs.h"
-
 #include "controlId.h"
 
 /****************************************************
@@ -110,7 +109,7 @@ int main()
 							if(cargaLista == 0)
 							{
 
-								controller_loadFromBinary("data.bin", listaPasajeros);
+								retorno = controller_loadFromBinary("data.bin", listaPasajeros);
 								if(retorno == 1)
 								{
 									printf("Se cargaron los datos correctamente\n");
@@ -129,7 +128,7 @@ int main()
 
 						case 3:
 
-							controller_addPassenger(listaPasajeros);
+							retorno = controller_addPassenger(listaPasajeros);
 							if(retorno == 1)
 							{
 								printf("Se cargo el pasajero correctamente\n");
@@ -139,7 +138,7 @@ int main()
 
 						case 4:
 
-							controller_editPassenger(listaPasajeros);
+							retorno = controller_editPassenger(listaPasajeros);
 							if(retorno == 1)
 							{
 								printf("Se modifico el pasajero correctamente\n");
@@ -148,7 +147,7 @@ int main()
 
 						case 5:
 
-							controller_removePassenger(listaPasajeros);
+							retorno = controller_removePassenger(listaPasajeros);
 							if(retorno == 1)
 							{
 								printf("Se removio el pasajero correctamente\n");
@@ -162,7 +161,7 @@ int main()
 
 						case 7:
 
-							controller_sortPassenger(listaPasajeros);
+							retorno = controller_sortPassenger(listaPasajeros);
 							if(retorno == 1)
 							{
 								printf("Se ordeno los pasajero correctamente\n");
@@ -171,7 +170,7 @@ int main()
 
 						case 8:
 
-							controller_saveAsText("data.csv", listaPasajeros);
+							retorno = controller_saveAsText("data.csv", listaPasajeros);
 							if(retorno == 1)
 							{
 								printf("Se guardaron los pasajero correctametne\n");
@@ -181,7 +180,7 @@ int main()
 
 						case 9:
 
-							controller_saveAsBinary("data.bin", listaPasajeros);
+							retorno = controller_saveAsBinary("data.bin", listaPasajeros);
 							if(retorno == 1)
 							{
 								printf("Se guardaron los pasajero correctametne\n");

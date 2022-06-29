@@ -10,23 +10,6 @@
 #include "inputs.h"
 #include "ingresoDeDatos.h"
 
-void menuModificaciones(void)
-{
-	printf("1- Modificar el nombre\n");
-	printf("2- Modificar el apellido\n");
-	printf("3- Modificar el precio\n");
-	printf("4- Modificar la clase del pasajero\n");
-	printf("5- Modificar el codigo de vuelo\n");
-	printf("6- Modificar el estado del vuelo\n");
-}
-
-/** \brief Carga los datos de los pasajeros desde el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
 {
 	int respuesta;
@@ -49,13 +32,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
 	return respuesta;
 }
 
-/** \brief Carga los datos de los pasajeros desde el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
 int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 {
 	int respuesta;
@@ -78,13 +55,6 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 	return respuesta;
 }
 
-/** \brief Alta de pasajero
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_addPassenger(LinkedList* pArrayListPassenger)
 {
 	int index;
@@ -122,13 +92,7 @@ int controller_addPassenger(LinkedList* pArrayListPassenger)
     return index;
 }
 
-/** \brief Modificar datos de pasajero
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
 int controller_editPassenger(LinkedList* pArrayListPassenger)
 {
 	int index;
@@ -160,7 +124,12 @@ int controller_editPassenger(LinkedList* pArrayListPassenger)
 
 		do
 		{
-			menuModificaciones();
+			printf("1- Modificar el nombre\n");
+			printf("2- Modificar el apellido\n");
+			printf("3- Modificar el precio\n");
+			printf("4- Modificar la clase del pasajero\n");
+			printf("5- Modificar el codigo de vuelo\n");
+			printf("6- Modificar el estado del vuelo\n");
 			opcion = input_GetInt("Elija una de las opciones anteriores");
 		} while (opcion < 1 && opcion > 6);
 
@@ -200,13 +169,7 @@ int controller_editPassenger(LinkedList* pArrayListPassenger)
     return index;
 }
 
-/** \brief Baja de pasajero
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- * 1 si se elemino correctamente y 0 si no se elimino
- */
+
 int controller_removePassenger(LinkedList* pArrayListPassenger)
 {
 	int index;
@@ -251,13 +214,7 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 	return index;
 }
 
-/** \brief Listar pasajeros
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
 int controller_ListPassenger(LinkedList* pArrayListPassenger)
 {
 
@@ -279,13 +236,7 @@ int controller_ListPassenger(LinkedList* pArrayListPassenger)
     return index;
 }
 
-/** \brief Ordenar pasajeros
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
 int controller_sortPassenger(LinkedList* pArrayListPassenger)
 {
 	int index;
@@ -322,13 +273,7 @@ int controller_sortPassenger(LinkedList* pArrayListPassenger)
     return index;
 }
 
-/** \brief Guarda los datos de los pasajeros en el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
 int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
 {
 	int index;
@@ -394,13 +339,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
 	return index;
 }
 
-/** \brief Guarda los datos de los pasajeros en el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
 int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
 {
 	int index;
